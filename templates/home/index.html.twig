@@ -12,6 +12,7 @@
 
     {% for article in articles %}
         {{ article.title }}
+        <a href="{{ path('read_article', {'id': article.id}) }}">Read article</a>
     {% endfor %}
 
     <h1>Hello {{ controller_name }}! ✅</h1>

@@ -21,4 +21,14 @@ class HomeController extends AbstractController
             'articles' => $articleRepository->findAll()
         ]);
     }
+
+    /**
+     * @Route("/read/{id}", name="read_article", methods={"GET"})
+     */
+    public function read(Article $article) : Response
+    {
+        return $this->render('article/show.html.twig', [
+            'article' => $article,
+        ]);
+    }
 }
