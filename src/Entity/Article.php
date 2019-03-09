@@ -5,41 +5,61 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\ArticleRepository")
+ * Article
+ *
+ * @ORM\Table(name="article")
+ * @ORM\Entity
  */
 class Article
 {
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @var string
+     *
+     * @ORM\Column(name="title", type="string", length=255, nullable=false)
      */
     private $title;
 
     /**
-     * @ORM\Column(type="text")
+     * @var string
+     *
+     * @ORM\Column(name="text", type="text", length=0, nullable=false)
      */
     private $text;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @var \DateTime
+     *
+     * @ORM\Column(name="published_at", type="datetime", nullable=false)
      */
-    private $published_at;
+    private $publishedAt;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @var \DateTime|null
+     *
+     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
      */
-    private $updated_at;
+    private $updatedAt;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @var string
+     *
+     * @ORM\Column(name="author", type="string", length=255, nullable=false)
      */
     private $author;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Category", inversedBy="article", cascade={"persist", "remove"})
+     */
+    private $category;
 
     public function getId(): ?int
     {
@@ -72,24 +92,24 @@ class Article
 
     public function getPublishedAt(): ?\DateTimeInterface
     {
-        return $this->published_at;
+        return $this->publishedAt;
     }
 
-    public function setPublishedAt(\DateTimeInterface $published_at): self
+    public function setPublishedAt(\DateTimeInterface $publishedAt): self
     {
-        $this->published_at = $published_at;
+        $this->publishedAt = $publishedAt;
 
         return $this;
     }
 
     public function getUpdatedAt(): ?\DateTimeInterface
     {
-        return $this->updated_at;
+        return $this->updatedAt;
     }
 
-    public function setUpdatedAt(?\DateTimeInterface $updated_at): self
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
     {
-        $this->updated_at = $updated_at;
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
@@ -105,4 +125,18 @@ class Article
 
         return $this;
     }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+
 }

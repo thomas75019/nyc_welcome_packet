@@ -5,29 +5,40 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\NewsletterRepository")
+ * Newsletter
+ *
+ * @ORM\Table(name="newsletter")
+ * @ORM\Entity
  */
 class Newsletter
 {
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @var string
+     *
+     * @ORM\Column(name="first_name", type="string", length=255, nullable=false)
      */
-    private $first_name;
+    private $firstName;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @var string
+     *
+     * @ORM\Column(name="last_name", type="string", length=255, nullable=false)
      */
-    private $last_name;
+    private $lastName;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=255, nullable=false)
      */
     private $email;
 
@@ -38,24 +49,24 @@ class Newsletter
 
     public function getFirstName(): ?string
     {
-        return $this->first_name;
+        return $this->firstName;
     }
 
-    public function setFirstName(string $first_name): self
+    public function setFirstName(string $firstName): self
     {
-        $this->first_name = $first_name;
+        $this->firstName = $firstName;
 
         return $this;
     }
 
     public function getLastName(): ?string
     {
-        return $this->last_name;
+        return $this->lastName;
     }
 
-    public function setLastName(string $last_name): self
+    public function setLastName(string $lastName): self
     {
-        $this->last_name = $last_name;
+        $this->lastName = $lastName;
 
         return $this;
     }
@@ -71,4 +82,6 @@ class Newsletter
 
         return $this;
     }
+
+
 }

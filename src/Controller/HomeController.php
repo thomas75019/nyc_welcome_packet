@@ -31,4 +31,11 @@ class HomeController extends AbstractController
             'article' => $article,
         ]);
     }
+
+    /**
+     * @Route("/category/{name}", name="category", methods={"GET"})
+     */
+    public function category(ArticleRepository $article)
+    {
+    }
 }

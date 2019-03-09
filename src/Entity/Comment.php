@@ -5,29 +5,40 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\CommentRepository")
+ * Comment
+ *
+ * @ORM\Table(name="comment")
+ * @ORM\Entity
  */
 class Comment
 {
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @var string
+     *
+     * @ORM\Column(name="author", type="string", length=255, nullable=false)
      */
     private $author;
 
     /**
-     * @ORM\Column(type="text")
+     * @var string
+     *
+     * @ORM\Column(name="text", type="text", length=0, nullable=false)
      */
     private $text;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="datetime", nullable=false)
      */
     private $date;
 
@@ -71,4 +82,6 @@ class Comment
 
         return $this;
     }
+
+
 }
