@@ -67,11 +67,11 @@ class Article
      * @ORM\OrderBy({"name": "ASC"})
      * @Assert\Count(max="4")
      */
-    private $catgories;
+    private $categories;
 
     public function __construct()
     {
-        $this->catgories = new ArrayCollection();
+        $this->categories = new ArrayCollection();
     }
 
 
@@ -144,21 +144,24 @@ class Article
     {
         foreach ($categories as $category)
         {
-            if (!$this->catgories->contains($category))
+            if (!$this->categories->contains($category))
             {
-                $this->catgories->add($category);
+                $this->categories->add($category);
             }
         }
     }
 
     public function removeCategory(Category $category) : void
     {
-        $this->catgories->removeElement($category);
+        $this->categories->removeElement($category);
     }
 
+    /**
+     * @return Collection
+     */
     public function getCategories() : Collection
     {
-        return $this->catgories;
+        return $this->categories;
     }
 
 

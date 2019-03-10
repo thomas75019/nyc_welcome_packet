@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Article;
+use App\Entity\Category;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -17,6 +18,23 @@ class ArticleRepository extends ServiceEntityRepository
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Article::class);
+    }
+
+    /**
+     * @return Article[]
+     */
+    public function findArticlesByCategory($category)
+    {
+        $qb = $this->createQueryBuilder("a")
+            ->addSelect('a', 'c')
+            ->leftJoin("a.categories", "c")
+            ->andWhere("c.name = :category")
+            ->setParameter(":category", $category)
+            ->setMaxResults(10)
+        ;
+
+        return $qb->getQuery()->getResult();
+
     }
 
     // /**
