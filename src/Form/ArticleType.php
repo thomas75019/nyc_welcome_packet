@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Article;
 use App\Entity\Category;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -19,10 +20,12 @@ class ArticleType extends AbstractType
             ->add('title', TextType::class)
             ->add('text', TextareaType::class)
             ->add('author', TextType::class)
-            ->add('category', EntityType::class, [
+            ->add('categories', EntityType::class, array(
                 'class' => Category::class,
-                'choice_label' => 'name'
-            ])
+                'choice_label' => 'name',
+                'multiple' => true,
+                'expanded' => true
+            ))
         ;
     }
 

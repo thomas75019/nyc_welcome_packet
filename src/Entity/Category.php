@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -27,10 +29,6 @@ class Category
      */
     private $name;
 
-    /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Article", mappedBy="category", cascade={"persist", "remove"})
-     */
-    private $article;
 
     public function getId(): ?int
     {
@@ -49,23 +47,9 @@ class Category
         return $this;
     }
 
-    public function getArticle(): ?Article
-    {
-        return $this->article;
-    }
 
-    public function setArticle(?Article $article): self
-    {
-        $this->article = $article;
 
-        // set (or unset) the owning side of the relation if necessary
-        $newCategory = $article === null ? null : $this;
-        if ($newCategory !== $article->getCategory()) {
-            $article->setCategory($newCategory);
-        }
 
-        return $this;
-    }
 
 
 }

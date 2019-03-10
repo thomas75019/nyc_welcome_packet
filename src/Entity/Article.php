@@ -2,7 +2,10 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Article
@@ -57,9 +60,20 @@ class Article
     private $author;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Category", inversedBy="article", cascade={"persist", "remove"})
+     * @var Category[]|ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="App\Entity\Category", cascade={"persist"})
+     * @ORM\JoinTable(name="article_category")
+     * @ORM\OrderBy({"name": "ASC"})
+     * @Assert\Count(max="4")
      */
-    private $category;
+    private $catgories;
+
+    public function __construct()
+    {
+        $this->catgories = new ArrayCollection();
+    }
+
 
     public function getId(): ?int
     {
@@ -126,17 +140,30 @@ class Article
         return $this;
     }
 
-    public function getCategory(): ?Category
+    public function addCategory(?Category ...$categories) : void
     {
-        return $this->category;
+        foreach ($categories as $category)
+        {
+            if (!$this->catgories->contains($category))
+            {
+                $this->catgories->add($category);
+            }
+        }
     }
 
-    public function setCategory(?Category $category): self
+    public function removeCategory(Category $category) : void
     {
-        $this->category = $category;
-
-        return $this;
+        $this->catgories->removeElement($category);
     }
+
+    public function getCategories() : Collection
+    {
+        return $this->catgories;
+    }
+
+
+
+
 
 
 }
