@@ -38,6 +38,10 @@ class ArticleController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $article->setPublishedAt(new \DateTime());
 
+            $title = $article->getTitle();
+            $slug = str_replace(' ', '-', $title);
+            $article->setSlug($slug);
+
             $entityManager->persist($article);
             $entityManager->flush();
 
@@ -70,6 +74,8 @@ class ArticleController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $article->setUpdatedAt(new \DateTime());
+
+
 
             $this->getDoctrine()->getManager()->flush();
 

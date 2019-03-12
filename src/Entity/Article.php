@@ -69,6 +69,13 @@ class Article
      */
     private $categories;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $slug;
+
+
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
@@ -164,8 +171,17 @@ class Article
         return $this->categories;
     }
 
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
 
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
+        return $this;
+    }
 
 
 
