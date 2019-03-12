@@ -7,11 +7,12 @@ use App\Entity\Newsletter;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use App\Form\NewsletterType;
 
 Class NewsletterController extends AbstractController
 {
     /**
-     * @Route("/newsletter" name="newsletter_form" methods={"GET", "POST"})
+     * @Route("/newsletter", name="newsletter_form", methods={"GET", "POST"})
      */
     public function newsletter(Request $request) : Response
     {
@@ -28,8 +29,6 @@ Class NewsletterController extends AbstractController
 
             return $this->redirectToRoute('home');
         }
-
-        return $this->render('home/index.html.twig');
 
     }
 }

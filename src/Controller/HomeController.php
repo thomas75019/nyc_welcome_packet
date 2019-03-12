@@ -2,13 +2,16 @@
 
 namespace App\Controller;
 
-use App\Entity\Category;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Article;
 use App\Repository\ArticleRepository;
 use App\Repository\CategoryRepository;
+use App\Form\NewsletterType;
+use App\Entity\Newsletter;
+use Symfony\Component\HttpFoundation\Request;
 
 
 
@@ -17,12 +20,29 @@ class HomeController extends AbstractController
     /**
      * @Route("/home", name="home", methods={"GET"})
      */
-    public function index(ArticleRepository $articleRepository, CategoryRepository $categoryRepository) : Response
+    public function index(ArticleRepository $articleRepository, CategoryRepository $categoryRepository, Request $request) : Response
     {
+
+        $newsletter = new Newsletter();
+        $form = $this->createForm(NewsletterType::class, $newsletter);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $em = $this->getDoctrine()->getManager();
+
+            $em->persist($newsletter);
+            $em->flush();
+
+            return $this->redirectToRoute('home');
+        }
+
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
             'articles' => $articleRepository->findAll(),
-            'categories' => $categoryRepository->findAll()
+            'categories' => $categoryRepository->findAll(),
+            'form' => $form->createView(),
+
 
         ]);
     }
@@ -47,4 +67,7 @@ class HomeController extends AbstractController
             'articles' => $articleRepository->findArticlesByCategory($category_name)
         ]);
     }
+
+
+
 }
