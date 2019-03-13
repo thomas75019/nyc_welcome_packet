@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\Request;
 class HomeController extends AbstractController
 {
     /**
-     * @Route("/home", name="home", methods={"GET"})
+     * @Route("/", name="home", methods={"GET"})
      */
     public function index(ArticleRepository $articleRepository, CategoryRepository $categoryRepository, Request $request) : Response
     {
