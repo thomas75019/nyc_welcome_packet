@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Utils\Slugger;
 
 /**
  * @Route("/article")
@@ -39,8 +40,7 @@ class ArticleController extends AbstractController
             $article->setPublishedAt(new \DateTime());
 
             $title = $article->getTitle();
-            $slug = str_replace(' ', '-', $title);
-            $article->setSlug($slug);
+            $article->setSlug(Slugger::slugify($title));
 
             $entityManager->persist($article);
             $entityManager->flush();
