@@ -48,7 +48,7 @@ class HomeController extends AbstractController
     }
 
     /**
-     * @Route("/read/{id}", name="read_article", methods={"GET"})
+     * @Route("/read/{slug}", name="read_article", methods={"GET"})
      */
     public function read(Article $article) : Response
     {
