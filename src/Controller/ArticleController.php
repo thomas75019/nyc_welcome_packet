@@ -17,11 +17,24 @@ use App\Utils\Slugger;
 class ArticleController extends AbstractController
 {
 
-    public function index(ArticleRepository $articleRepository): Response
+    /**
+     * Return the list of article
+     * @param ArticleRepository $articleRepository
+     * @return Response
+     */
+    public function getListArticle(ArticleRepository $articleRepository): Response
     {
         return $this->render('article/_article_list.html.twig', [
             'articles' => $articleRepository->findAll(),
         ]);
+    }
+
+    /**
+     * @Route("/", name="article_index", methods={"GET"})
+     */
+    public function index()
+    {
+        return $this->render('article/index.html.twig');
     }
 
     /**

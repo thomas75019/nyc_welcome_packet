@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Article{% endblock %}
+{% block title %}{{ parent() }}-{{ article.title }}{% endblock %}
 
     {% block content_body %}
         <h1>Article</h1>
