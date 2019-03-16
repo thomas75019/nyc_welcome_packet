@@ -18,9 +18,9 @@ use Symfony\Component\HttpFoundation\Request;
 class HomeController extends AbstractController
 {
     /**
-     * @Route("/", name="home", methods={"GET"})
+     * @Route("/", name="home", methods={"GET", "POST"})
      */
-    public function index(ArticleRepository $articleRepository, CategoryRepository $categoryRepository, Request $request) : Response
+    public function index(Request $request) : Response
     {
 
         $newsletter = new Newsletter();
@@ -38,8 +38,6 @@ class HomeController extends AbstractController
         }
 
         return $this->render('home/index.html.twig', [
-            'articles' => $articleRepository->findAll(),
-            'categories' => $categoryRepository->findAll(),
             'form' => $form->createView(),
         ]);
     }

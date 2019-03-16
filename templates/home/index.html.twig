@@ -8,19 +8,10 @@
 {{ parent() }}
 
  <!-- LAST ARTCLES -->
-<div class="article" id="article">
-    {% for article in articles %}
-        <article class="{{ article.slug }}" id="{{ article.slug }}">
-            <h3>{{ article.title }}</h3>
-            <p id="resume-{{ article.slug }}" class="resume-{{ article.slug }}">
-                {{ article.text|slice(0, 150) }}
-            </p>
-            <!-- To change with a button -->
-            <p><a href="{{ path('read_article', {'slug': article.slug}) }}">Read</a></p>
+    {{ render(controller(
+        'App\\Controller\\ArticleController::index'
+    )) }}
 
-        </article>
-    {% endfor %}
-</div>
     <div class="newsletter-from" id="newsletter-form">
         {{ include('newsletter/_form_newsletter_register.html.twig') }}
     </div>

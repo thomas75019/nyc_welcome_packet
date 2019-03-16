@@ -1,7 +1,6 @@
 {% include 'base.html.twig' %}
 
-{% block body %}
-    {{ parent() }}
+
     {% block content_body %}
         <div class="article" id="article">
             {% for article in articles %}
@@ -18,4 +17,3 @@
         </div>
     {% endblock %}
 
-{% endblock %}
