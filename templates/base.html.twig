@@ -8,11 +8,13 @@
     <body>
         {% block body %}
             {% block header %}
-                <h1>NYC WELCOME PACKET</h1>
+                <header>
+                    <h1>NYC WELCOME PACKET</h1>
 
-                <h2>EVERYTHING YOU NEED TO KNOW WHEN YOU ARRIVE IN NY</h2>
+                    <h2>EVERYTHING YOU NEED TO KNOW WHEN YOU ARRIVE IN NY</h2>
+                </header>
             {% endblock %}
-            {% block nac %}
+            {% block nav %}
                 <nav class="nav" id="nav">
                     <ul>
                     {% for category in categories %}
@@ -25,6 +27,7 @@
                     </ul>
             {% endblock %}
                 </nav>
+            {% block content_body %}{% endblock %}
         {% endblock %}
         {% block javascripts %}{% endblock %}
     </body>

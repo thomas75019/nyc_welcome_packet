@@ -16,7 +16,7 @@
                 {{ article.text|slice(0, 150) }}
             </p>
             <!-- To change with a button -->
-            <p><a href="{{ path('read', {'slug': article.slug}) }}">Read</a></p>
+            <p><a href="{{ path('read_article', {'slug': article.slug}) }}">Read</a></p>
 
         </article>
     {% endfor %}
