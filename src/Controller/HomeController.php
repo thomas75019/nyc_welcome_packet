@@ -42,8 +42,6 @@ class HomeController extends AbstractController
             'articles' => $articleRepository->findAll(),
             'categories' => $categoryRepository->findAll(),
             'form' => $form->createView(),
-
-
         ]);
     }
 

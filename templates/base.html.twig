@@ -2,11 +2,30 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}NYC WELCOME PACKET{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {% block body %}
+            {% block header %}
+                <h1>NYC WELCOME PACKET</h1>
+
+                <h2>EVERYTHING YOU NEED TO KNOW WHEN YOU ARRIVE IN NY</h2>
+            {% endblock %}
+            {% block nac %}
+                <nav class="nav" id="nav">
+                    <ul>
+                    {% for category in categories %}
+                        <li class="category-{{ category.name }}" id="category-{{ category.name }}" data-index="{{ category.id }}">
+                           <a href="{{ path('category', {'category_name': category.name}) }}">
+                               {{ category.name }}
+                           </a>
+                        </li>
+                    {% endfor %}
+                    </ul>
+            {% endblock %}
+                </nav>
+        {% endblock %}
         {% block javascripts %}{% endblock %}
     </body>
 </html>
