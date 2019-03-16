@@ -28,11 +28,13 @@ class CategoryController extends AbstractController
     /**
      * @Route("/new", name="category_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, CategoryRepository $categories): Response
     {
         $category = new Category();
         $form = $this->createForm(CategoryType::class, $category);
         $form->handleRequest($request);
+
+
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
@@ -45,6 +47,7 @@ class CategoryController extends AbstractController
         return $this->render('category/new.html.twig', [
             'category' => $category,
             'form' => $form->createView(),
+
         ]);
     }
 
@@ -93,4 +96,17 @@ class CategoryController extends AbstractController
 
         return $this->redirectToRoute('category_index');
     }
+
+    /**
+     * Render list of categories for base template
+     * @param CategoryRepository $category
+     * @return Response
+     */
+    public function baseCategory(CategoryRepository $category) : Response
+    {
+        return $this->render('category/_categories.html.twig', [
+            'categories' => $category->findAll()
+        ]);
+    }
+
 }

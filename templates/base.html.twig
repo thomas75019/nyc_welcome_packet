@@ -17,13 +17,9 @@
             {% block nav %}
                 <nav class="nav" id="nav">
                     <ul>
-                    {% for category in categories %}
-                        <li class="category-{{ category.name }}" id="category-{{ category.name }}" data-index="{{ category.id }}">
-                           <a href="{{ path('category', {'category_name': category.name}) }}">
-                               {{ category.name }}
-                           </a>
-                        </li>
-                    {% endfor %}
+                    {{ render(controller(
+                        'App\\Controller\\CategoryController::baseCategory'
+                    )) }}
                     </ul>
             {% endblock %}
                 </nav>

@@ -1,0 +1,8 @@
+
+{% for category in categories %}
+    <li class="category-{{ category.name }}" id="category-{{ category.name }}" data-index="{{ category.id }}">
+        <a href="{{ path('category', {'category_name': category.name}) }}">
+            {{ category.name }}
+        </a>
+    </li>
+{% endfor %}

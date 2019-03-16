@@ -3,10 +3,12 @@
 {% block title %}Article{% endblock %}
 
 {% block body %}
-    <h1>Article</h1>
+    {{ parent() }}
+    {% block content_body %}
+        <h1>Article</h1>
 
-    <table class="table">
-        <tbody>
+        <table class="table">
+            <tbody>
             <tr>
                 <th>Id</th>
                 <td>{{ article.id }}</td>
@@ -31,12 +33,14 @@
                 <th>Author</th>
                 <td>{{ article.author }}</td>
             </tr>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
 
-    <a href="{{ path('article_index') }}">back to list</a>
+        <a href="{{ path('article_index') }}">back to list</a>
 
-    <a href="{{ path('article_edit', {'id': article.id}) }}">edit</a>
+        <a href="{{ path('article_edit', {'id': article.id}) }}">edit</a>
 
-    {{ include('article/_delete_form.html.twig') }}
+        {{ include('article/_delete_form.html.twig') }}
+    {% endblock %}
+
 {% endblock %}
