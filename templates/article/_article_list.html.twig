@@ -9,7 +9,7 @@
             <p><a href="{{ path('read_article', {'slug': article.slug}) }}">Read</a></p>
             {% if is_granted('ROLE_SUPER_ADMIN') %}
 
-            <a href="{{ path('article_show', {'id': article.id}) }}">show</a>
+            {{ include('article/_delete_form.html.twig') }}
             <a href="{{ path('article_edit', {'id': article.id}) }}">edit</a>
 
             {% endif %}
