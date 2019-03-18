@@ -8,4 +8,4 @@ cache:
     - $HOME/.composer/cache
 
 install:
-  - composer install
+  - composer update
