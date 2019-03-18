@@ -1,8 +1,7 @@
 language: php
 php:
+  - '7.1'
   - '7.2'
 script:
-   - bin/console cache:clear
-   - bin/console asset:install --symlink
    - composer install
    - vendor/bin/phpunit
