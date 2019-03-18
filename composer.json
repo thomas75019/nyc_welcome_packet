@@ -66,11 +66,10 @@
     },
     "scripts": {
         "auto-scripts": {
-            "cache:clear --env=prod ": "symfony-cmd",
+            "cache:clear --no-warmu ": "symfony-cmd",
             "assets:install --symlink %PUBLIC_DIR% ": "symfony-cmd"
         },
         "post-install-cmd": [
-            "bash post-install.sh",
             "@auto-scripts"
         ],
         "post-update-cmd": [
