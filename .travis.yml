@@ -3,4 +3,5 @@ php:
   - '7.1'
 script:
    - composer install
+   - bin/console cache:clear
    - vendor/bin/phpunit
