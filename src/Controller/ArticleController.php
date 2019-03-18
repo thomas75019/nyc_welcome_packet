@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
+use App\Utils\ArticleToPdf;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -40,7 +41,7 @@ class ArticleController extends AbstractController
     /**
      * @Route("/new", name="article_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, ArticleToPdf $articleToPdf): Response
     {
         $article = new Article();
         $form = $this->createForm(ArticleType::class, $article);
@@ -55,6 +56,8 @@ class ArticleController extends AbstractController
 
             $entityManager->persist($article);
             $entityManager->flush();
+
+            $articleToPdf->transformArticleToPdf($article, $article->getTitle());
 
             return $this->redirectToRoute('article_index');
         }
