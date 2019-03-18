@@ -17,6 +17,7 @@ class ArticleToPdf extends AbstractController
     /**
      * Render the article and transorm it to pdf then download it
      * @param $article
+     * @param $title
      */
     public function transformArticleToPdf($article, $title)
     {
