@@ -9,4 +9,4 @@ cache:
         - $HOME/symfony-bridge/.phpunit
 
 script:
-  - composer intall
+  - composer install
