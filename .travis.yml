@@ -2,6 +2,10 @@ language: php
 php:
   - '7.1'
   - '7.2'
+
+env:
+  - DB=mysql
+
 script:
    - composer install
    - vendor/bin/phpunit
