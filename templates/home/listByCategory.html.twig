@@ -2,18 +2,6 @@
 
 
     {% block content_body %}
-        <div class="article" id="article">
-            {% for article in articles %}
-                <article class="{{ article.slug }}" id="{{ article.slug }}">
-                    <h3>{{ article.title }}</h3>
-                    <p id="resume-{{ article.slug }}" class="resume-{{ article.slug }}">
-                        {{ article.text|slice(0, 150) }}
-                    </p>
-                    <!-- To change with a button -->
-                    <p><a href="{{ path('read', {'slug': article.slug}) }}">Read</a></p>
-
-                </article>
-            {% endfor %}
-        </div>
+        {{ include('article/_article_list.html.twig') }}
     {% endblock %}
 

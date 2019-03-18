@@ -37,8 +37,8 @@ Class HomeControllerTest extends WebTestCase
     public function provideUrls()
     {
         return [
-            'read' => ['read', '/read/test'],
-            'view' => ['view', '/view/test']
+            'read_article' => ['read_article', 'read/test'],
+            'category' => ['category', 'view/test']
         ];
     }
 
