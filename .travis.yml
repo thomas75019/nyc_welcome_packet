@@ -9,7 +9,6 @@ php:
 # Commands to be run before your environment runs.
 before_script:
  - composer self-update
- - composer dump-env prod
  - composer install --prefer-source --no-interaction
 # Commands you want to run that will verify your build.
 script: vendor/bin/phpunit
