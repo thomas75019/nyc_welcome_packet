@@ -1,12 +1,16 @@
+# Required to run your project under the correct environment.
 language: php
-sudo: false
-
+# Versions of PHP you want your project run with.
 php:
-  - '7.1'
-cache:
-    directories:
-        - $HOME/.composer/cache/files
-        - $HOME/symfony-bridge/.phpunit
-
-script:
-  - composer install
+ - 5.5
+ - 5.6
+ - 7.0
+ - 7.1
+ - 7.2
+ - hhvm
+# Commands to be run before your environment runs.
+before_script:
+ - composer self-update
+ - composer install --prefer-source --no-interaction --dev
+# Commands you want to run that will verify your build.
+script: vendor/bin/phpunit
