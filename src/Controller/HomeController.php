@@ -8,7 +8,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Article;
 use App\Repository\ArticleRepository;
-use App\Repository\CategoryRepository;
 use App\Form\NewsletterType;
 use App\Entity\Newsletter;
 use Symfony\Component\HttpFoundation\Request;
