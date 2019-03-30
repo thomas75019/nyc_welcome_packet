@@ -5,6 +5,7 @@ namespace App\Tests\Controller;
 use App\Entity\Newsletter;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\BrowserKit;
 
 
 Class HomeControllerTest extends WebTestCase
@@ -41,6 +42,8 @@ Class HomeControllerTest extends WebTestCase
             'category' => ['category', 'view/test']
         ];
     }
+
+
 
     public function testForm()
     {
