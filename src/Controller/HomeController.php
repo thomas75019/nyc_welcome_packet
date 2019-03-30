@@ -36,9 +36,13 @@ class HomeController extends AbstractController
             return $this->redirectToRoute('home');
         }
 
-        return $this->render('home/index.html.twig', [
+        $response = $this->render('home/index.html.twig', [
             'form' => $form->createView(),
         ]);
+
+        $response->setSharedMaxAge(3600);
+
+        return $response;
     }
 
     /**
