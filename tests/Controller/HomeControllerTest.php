@@ -6,6 +6,7 @@ use App\Entity\Newsletter;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\BrowserKit;
+use PHPUnit\Framework\TestCase;
 
 
 Class HomeControllerTest extends WebTestCase
